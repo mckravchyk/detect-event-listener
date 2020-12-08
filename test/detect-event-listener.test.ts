@@ -1,8 +1,8 @@
-import getEventListenerOptionsSupport from '../dist/esm/getEventListenerOptionsSupport';
+import { detectEventListener } from '../dist/detect-event-listener.esm';
 
 describe('Test getEventListenerOptionsSupport()', () => {
   test('Return type', () => {
-    const optionsSupport = getEventListenerOptionsSupport();
+    const optionsSupport = detectEventListener();
 
     expect(typeof optionsSupport === 'object' && optionsSupport !== null).toBe(true);
 

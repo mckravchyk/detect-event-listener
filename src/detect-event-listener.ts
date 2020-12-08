@@ -2,8 +2,9 @@
  * Detect whether the browser supports passive events
  *
  * https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Safely_detecting_option_support
+ *
  */
-function getEventListenerOptionsSupport() {
+function detectEventListener() {
   const result = {
     supportsOptions: false,
     supportsPassive: false,
@@ -88,4 +89,4 @@ function getEventListenerOptionsSupport() {
   return result;
 }
 
-export default getEventListenerOptionsSupport;
+export { detectEventListener };
