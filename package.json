@@ -1,0 +1,26 @@
+{
+  "name": "detect-event-listener",
+  "version": "0.0.1",
+  "description": "Detect support for EventTarget.addEventListener and its options parameter: passive events, once and capture.",
+  "author": "Maciej Krawczyk",
+  "license": "MIT",
+  "private": true,
+  "main": "./lib/cjs/index.js",
+  "module": "./lib/esm/index.js",
+  "scripts": {
+    "test": "npm run test",
+    "build": "tsc -p tsconfig-esm.json && tsc -p tsconfig-cjs.json",
+    "prepublish": "npm run build"
+  },
+  "files": [
+    "dist/",
+    "src/",
+    "test/"
+  ],
+  "keywords": [
+    "addEventListener"
+  ],
+  "devDependencies": {
+    "typescript": "^4.1.2"
+  }
+}
