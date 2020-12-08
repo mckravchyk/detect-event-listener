@@ -1,4 +1,4 @@
-import getEventListenerOptionsSupport from '../src/getEventListenerOptionsSupport';
+import getEventListenerOptionsSupport from '../dist/esm/getEventListenerOptionsSupport';
 
 describe('Test getEventListenerOptionsSupport()', () => {
   test('Return type', () => {
