@@ -1,14 +1,15 @@
-import { detectEventListener } from '../dist/detect-event-listener.esm';
+import { detectEventListener } from '../src/detect-event-listener';
 
-describe('Test getEventListenerOptionsSupport()', () => {
-  test('Return type', () => {
-    const optionsSupport = detectEventListener();
+describe('Test detectEventListener()', () => {
+  test('Return value', () => {
+    const eventListenerSupport = detectEventListener();
 
-    expect(typeof optionsSupport === 'object' && optionsSupport !== null).toBe(true);
+    expect(typeof eventListenerSupport === 'object' && eventListenerSupport !== null).toBe(true);
 
-    // Note: It seems like jsdom supports all these options, so we are expecting true
-    expect(optionsSupport.supportsOptions).toBe(true);
-    expect(optionsSupport.supportsOnce).toBe(true);
-    expect(optionsSupport.supportsPassive).toBe(true);
+    // Note: It's expected all of features are supported by jsdom
+    expect(eventListenerSupport.supportsEventListener).toBe(true);
+    expect(eventListenerSupport.supportsOptions).toBe(true);
+    expect(eventListenerSupport.supportsOnce).toBe(true);
+    expect(eventListenerSupport.supportsPassive).toBe(true);
   });
 });
