@@ -1,7 +1,7 @@
 {
   "name": "detect-event-listener",
   "version": "0.0.1",
-  "description": "Detect addEventListener options support: passive events, once and capture.",
+  "description": "Detect support for addEventListener and its options: passive events, once and capture.",
   "author": "Maciej Krawczyk",
   "license": "MIT",
   "private": true,
