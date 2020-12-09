@@ -1,27 +1,26 @@
 /**
  * Add TypeScript plugin for Rollup
- * 
+ *
  * Using rollup-plugin-typescript2 rather than the official one as there were problems
- * with generating declaration files
  * https://github.com/rollup/plugins/issues/105
  * https://github.com/rollup/plugins/issues/247
- * 
- **/
-//import typescript from '@rollup/plugin-typescript'
+ *
+ */
+// import typescript from '@rollup/plugin-typescript'
 import typescript from 'rollup-plugin-typescript2';
 
 import pkg from './package.json';
 
 const defaults = {
-	input: 'src/detect-event-listener.ts',
-	external: [
-    ...Object.keys(pkg.dependencies || {}), 
-    ...Object.keys(pkg.peerDependencies || {})
+  input: 'src/detect-event-listener.ts',
+  external: [
+    ...Object.keys(pkg.dependencies || {}),
+    ...Object.keys(pkg.peerDependencies || {}),
   ],
-	plugins: [
-		typescript()
-	]
-}
+  plugins: [
+    typescript(),
+  ],
+};
 
 export default [
   {
@@ -31,11 +30,11 @@ export default [
         file: pkg.main,
         format: 'cjs',
       },
-      { 
+      {
         file: pkg.browser,
         name: 'detectEventListener',
-        format: 'umd'
-      }
+        format: 'umd',
+      },
     ],
   },
   {
@@ -46,12 +45,12 @@ export default [
     },
     plugins: [
       typescript({
-        tsconfig: "tsconfig.json",
+        tsconfig: 'tsconfig.json',
         tsconfigOverride: {
           compilerOptions: {
             declaration: true,
-            declarationDir: './dist'
-          }
+            declarationDir: './dist',
+          },
         },
         useTsconfigDeclarationDir: true,
       }),
