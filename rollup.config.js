@@ -1,5 +1,6 @@
 /**
- * Using rollup-plugin-typescript2 rather than the official one as there were problems
+ * Using rollup-plugin-typescript2 rather than the official one as there are problems
+ * with generating type declarations
  * https://github.com/rollup/plugins/issues/105
  * https://github.com/rollup/plugins/issues/247
  *
@@ -8,8 +9,11 @@
 import typescript from 'rollup-plugin-typescript2';
 
 import { terser } from 'rollup-plugin-terser';
-
+import banner from 'rollup-plugin-banner';
 import pkg from './package.json';
+
+const copyright = `Copyright (c) 2020 ${pkg.author}`;
+const bannerText = `${pkg.name} v${pkg.version}\n${copyright}\nLicense: ${pkg.license}`;
 
 const defaults = {
   input: 'src/detect-event-listener.ts',
@@ -34,11 +38,13 @@ export default [
         file: `dist/${pkg.name}.js`,
         format: 'umd',
         name: 'detectEventListener',
+        // banner: '// Copyright (c) 2020 Maciej Krawczyk License: MIT',
       },
       {
         file: `dist/${pkg.name}.min.js`,
         format: 'umd',
         name: 'detectEventListener',
+        // banner: '// Copyright (c) 2020 Maciej Krawczyk License: MIT',
         plugins: [
           terser(),
         ],
@@ -46,6 +52,7 @@ export default [
     ],
     plugins: [
       typescript(),
+      banner(bannerText),
     ],
   },
 
@@ -67,6 +74,7 @@ export default [
         },
         useTsconfigDeclarationDir: true,
       }),
+      banner(bannerText),
     ],
   },
 ];
