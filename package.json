@@ -11,7 +11,7 @@
   "scripts": {
     "test": "npx jest",
     "build": "npx rollup -c",
-    "prepublish": "npm run build"
+    "prepublish": "npm run test && npm run build"
   },
   "files": [
     "dist/",
