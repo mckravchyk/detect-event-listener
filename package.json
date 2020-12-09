@@ -19,7 +19,11 @@
     "test/"
   ],
   "keywords": [
-    "addEventListener"
+    "addEventListener",
+    "browser",
+    "detect",
+    "feature detection",
+    "passive events"
   ],
   "devDependencies": {
     "@babel/core": "^7.12.9",
