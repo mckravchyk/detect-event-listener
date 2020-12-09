@@ -1,6 +1,4 @@
 /**
- * Add TypeScript plugin for Rollup
- *
  * Using rollup-plugin-typescript2 rather than the official one as there were problems
  * https://github.com/rollup/plugins/issues/105
  * https://github.com/rollup/plugins/issues/247
@@ -8,6 +6,8 @@
  */
 // import typescript from '@rollup/plugin-typescript'
 import typescript from 'rollup-plugin-typescript2';
+
+import { terser } from 'rollup-plugin-terser';
 
 import pkg from './package.json';
 
@@ -17,12 +17,12 @@ const defaults = {
     ...Object.keys(pkg.dependencies || {}),
     ...Object.keys(pkg.peerDependencies || {}),
   ],
-  plugins: [
-    typescript(),
-  ],
 };
 
+// Every build targets ES5
+
 export default [
+  // Common JS build + UMD builds for browsers
   {
     ...defaults,
     output: [
@@ -31,12 +31,25 @@ export default [
         format: 'cjs',
       },
       {
-        file: pkg.browser,
-        name: 'detectEventListener',
+        file: `dist/${pkg.name}.js`,
         format: 'umd',
+        name: 'detectEventListener',
+      },
+      {
+        file: `dist/${pkg.name}.min.js`,
+        format: 'umd',
+        name: 'detectEventListener',
+        plugins: [
+          terser(),
+        ],
       },
     ],
+    plugins: [
+      typescript(),
+    ],
   },
+
+  // ESM build + TypeScript declarations
   {
     ...defaults,
     output: {
@@ -56,5 +69,4 @@ export default [
       }),
     ],
   },
-
 ];
