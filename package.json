@@ -14,9 +14,7 @@
     "prepublish": "npm run test && npm run build"
   },
   "files": [
-    "dist/",
-    "src/",
-    "test/"
+    "dist/"
   ],
   "keywords": [
     "addEventListener",
