@@ -1,3 +1,10 @@
+export type EventListenerSupport = {
+  supportsEventListener: boolean
+  supportsOptions: boolean
+  supportsPassive: boolean
+  supportsOnce: boolean
+}
+
 /**
  * Detects support for addEventListener, including its third options parameter and passive events.
  *
@@ -5,7 +12,7 @@
  * https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Safely_detecting_option_support
  *
  */
-function detectEventListener() {
+export function detectEventListener(): EventListenerSupport {
   const result = {
     supportsEventListener: false,
     supportsOptions: false,
@@ -73,5 +80,3 @@ function detectEventListener() {
 
   return result;
 }
-
-export { detectEventListener };
