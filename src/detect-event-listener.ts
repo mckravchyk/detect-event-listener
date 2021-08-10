@@ -1,5 +1,5 @@
 /**
- * Detect browser support for addEventListener and its options
+ * Detects support for addEventListener, including its third options parameter and passive events.
  *
  * Inspired by
  * https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Safely_detecting_option_support
@@ -13,24 +13,17 @@ function detectEventListener() {
     supportsOnce: false,
   };
 
-  // Detect if addEventListener is supported at all
   if (typeof window !== 'undefined' && typeof window.addEventListener === 'function') {
     result.supportsEventListener = true;
   } else {
     return result;
   }
 
-  /**
-   * Detect if supports capture and options argument at all
-   *
-   * 'capture' was the first available option in the spec, so if it's not supported,
-   * options parameter is not supported at all
-   */
+  // Detect if options parameter is supported, by testing for capture property - which was in the
+  // initial spec for options parameter.
   try {
     const options = {
-      /**
-       * This getter will be called if capture property is read
-       */
+      // This getter will be called when capture property is read
       get capture() {
         result.supportsOptions = true;
         return false;
@@ -41,16 +34,13 @@ function detectEventListener() {
     // @ts-ignore
     window.removeEventListener('test', null, options);
   } catch (err) {
-    // Do nothing
+    // Catch
   }
 
   if (!result.supportsOptions) {
     return result;
   }
 
-  /**
-   * Test if passive is supported
-   */
   try {
     const options = {
       get passive() {
@@ -63,12 +53,9 @@ function detectEventListener() {
     // @ts-ignore EventListenerOptions type is not up to date
     window.removeEventListener('test', null, options);
   } catch (err) {
-    // Do nothing
+    // Catch
   }
 
-  /**
-   * Test if once is supported
-   */
   try {
     const options = {
       get once() {
@@ -81,7 +68,7 @@ function detectEventListener() {
     // @ts-ignore
     window.removeEventListener('test', null, options);
   } catch (err) {
-    // Do nothing
+    // Catch
   }
 
   return result;
