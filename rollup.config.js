@@ -38,13 +38,11 @@ export default [
         file: `dist/${pkg.name}.js`,
         format: 'umd',
         name: 'detectEventListener',
-        // banner: '// Copyright (c) 2020 Maciej Krawczyk License: MIT',
       },
       {
         file: `dist/${pkg.name}.min.js`,
         format: 'umd',
         name: 'detectEventListener',
-        // banner: '// Copyright (c) 2020 Maciej Krawczyk License: MIT',
         plugins: [
           terser(),
         ],
