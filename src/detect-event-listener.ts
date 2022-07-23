@@ -10,7 +10,6 @@ export type EventListenerSupport = {
  *
  * Inspired by
  * https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Safely_detecting_option_support
- *
  */
 export function detectEventListener(): EventListenerSupport {
   const result = {
@@ -22,9 +21,12 @@ export function detectEventListener(): EventListenerSupport {
 
   if (typeof window !== 'undefined' && typeof window.addEventListener === 'function') {
     result.supportsEventListener = true;
-  } else {
+  }
+  else {
     return result;
   }
+
+  /* eslint-disable @typescript-eslint/ban-ts-comment */
 
   // Detect if options parameter is supported, by testing for capture property - which was in the
   // initial spec for options parameter.
@@ -40,7 +42,8 @@ export function detectEventListener(): EventListenerSupport {
     window.addEventListener('test', null, options);
     // @ts-ignore
     window.removeEventListener('test', null, options);
-  } catch (err) {
+  }
+  catch (err) {
     // Catch
   }
 
@@ -59,7 +62,8 @@ export function detectEventListener(): EventListenerSupport {
     window.addEventListener('test', null, options);
     // @ts-ignore EventListenerOptions type is not up to date
     window.removeEventListener('test', null, options);
-  } catch (err) {
+  }
+  catch (err) {
     // Catch
   }
 
@@ -74,9 +78,12 @@ export function detectEventListener(): EventListenerSupport {
     window.addEventListener('test', null, options);
     // @ts-ignore
     window.removeEventListener('test', null, options);
-  } catch (err) {
+  }
+  catch (err) {
     // Catch
   }
+
+  /* eslint-enable @typescript-eslint/ban-ts-comment */
 
   return result;
 }
