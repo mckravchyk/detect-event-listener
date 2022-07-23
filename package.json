@@ -9,9 +9,12 @@
   "module": "./dist/detect-event-listener.esm.js",
   "types": "./dist/detect-event-listener.d.ts",
   "scripts": {
+    "lint": "eslint --ext ts src",
+    "check-types": "tsc --noemit",
     "test": "npx jest",
+    "check": "npm run lint; npm run check-types && npm run test",
     "build": "npx rollup -c",
-    "prepublish": "npm run test && npm run build"
+    "prepublish": "npm run check && npm run build"
   },
   "files": [
     "dist/"
