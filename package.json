@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Complete feature detection for addEventListener, including its third options parameter and passive events.",
   "author": "Maciej Krawczyk",
+  "homepage": "https://github.com/mckravchyk/detect-event-listener",
   "license": "MIT",
   "private": true,
   "main": "./dist/detect-event-listener.common.js",
