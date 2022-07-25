@@ -1,4 +1,4 @@
-import { detectEventListener } from '../src/detect-event-listener';
+import { detectEventListener } from '../src/detect_event_listener';
 
 describe('detectEventListener()', () => {
   it('returns feature support', () => {
