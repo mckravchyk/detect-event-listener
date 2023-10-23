@@ -12,6 +12,17 @@ export type EventListenerSupport = {
  * https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Safely_detecting_option_support
  */
 export function detectEventListener(): EventListenerSupport {
+  interface Options {
+    readonly capture?: boolean
+    readonly once?: boolean
+    readonly passive?: boolean
+  }
+
+  // addEventListener supports using null as the listener callback but the type definitions do not
+  // allow it.
+  type AddListener = (eventName: string, callback: null, options: Options) => void
+  type RemoveListener = AddListener;
+
   const result = {
     supportsEventListener: false,
     supportsOptions: false,
@@ -26,8 +37,6 @@ export function detectEventListener(): EventListenerSupport {
     return result;
   }
 
-  /* eslint-disable @typescript-eslint/ban-ts-comment */
-
   // Detect if options parameter is supported, by testing for capture property - which was in the
   // initial spec for options parameter.
   try {
@@ -38,13 +47,11 @@ export function detectEventListener(): EventListenerSupport {
         return false;
       },
     };
-    // @ts-ignore Allow null as callback
-    window.addEventListener('test', null, options);
-    // @ts-ignore
-    window.removeEventListener('test', null, options);
+    (<AddListener><unknown>window.addEventListener)('test', null, options);
+    (<RemoveListener><unknown>window.removeEventListener)('test', null, options);
   }
   catch (err) {
-    // Catch
+    //
   }
 
   if (!result.supportsOptions) {
@@ -58,13 +65,11 @@ export function detectEventListener(): EventListenerSupport {
         return false;
       },
     };
-    // @ts-ignore
-    window.addEventListener('test', null, options);
-    // @ts-ignore EventListenerOptions type is not up to date
-    window.removeEventListener('test', null, options);
+    (<AddListener><unknown>window.addEventListener)('test', null, options);
+    (<RemoveListener><unknown>window.removeEventListener)('test', null, options);
   }
   catch (err) {
-    // Catch
+    //
   }
 
   try {
@@ -74,16 +79,12 @@ export function detectEventListener(): EventListenerSupport {
         return false;
       },
     };
-    // @ts-ignore
-    window.addEventListener('test', null, options);
-    // @ts-ignore
-    window.removeEventListener('test', null, options);
+    (<AddListener><unknown>window.addEventListener)('test', null, options);
+    (<RemoveListener><unknown>window.removeEventListener)('test', null, options);
   }
   catch (err) {
-    // Catch
+    //
   }
-
-  /* eslint-enable @typescript-eslint/ban-ts-comment */
 
   return result;
 }
