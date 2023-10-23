@@ -1,6 +1,6 @@
 import { detectEventListener } from '../src/detect_event_listener';
 
-describe('detectEventListener()', () => {
+describe('detect-event-listener', () => {
   it('returns feature support', () => {
     const eventListenerSupport = detectEventListener();
 
