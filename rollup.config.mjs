@@ -7,6 +7,7 @@
 //
 // import typescript from '@rollup/plugin-typescript'
 import typescript from 'rollup-plugin-typescript2';
+import copy from 'rollup-plugin-copy';
 
 import pkg from './package.json' assert { type: 'json' };
 
@@ -61,6 +62,14 @@ export default [
           exclude: ['./test'],
         },
         useTsconfigDeclarationDir: true,
+      }),
+      copy({
+        targets: [
+          // TypeScript requires 2 distinct files for ESM and CJS types. See:
+          // https://devblogs.microsoft.com/typescript/announcing-typescript-4-7/
+          // https://github.com/gxmari007/vite-plugin-eslint/pull/60
+          { src: 'dist/index.d.ts', dest: 'dist', rename: 'index.d.mts' },
+        ],
       }),
     ],
   },
