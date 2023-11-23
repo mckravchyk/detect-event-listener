@@ -1,6 +1,6 @@
 {
   "name": "detect-event-listener",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Complete feature detection for addEventListener, including its third options parameter and passive events.",
   "author": "Maciej Krawczyk",
   "homepage": "https://github.com/mckravchyk/detect-event-listener",
