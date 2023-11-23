@@ -8,6 +8,9 @@
   "private": true,
   "main": "./dist/detect-event-listener.common.js",
   "module": "./dist/detect-event-listener.esm.js",
+  "exports": {
+    ".": "./dist/detect-event-listener.esm.js"
+  },
   "types": "./dist/index.d.ts",
   "scripts": {
     "lint": "eslint src test",

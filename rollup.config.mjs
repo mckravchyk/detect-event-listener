@@ -46,7 +46,7 @@ export default [
   {
     ...defaults,
     output: {
-      file: pkg.module,
+      file: pkg.exports['.'],
       format: 'es',
       banner,
     },
