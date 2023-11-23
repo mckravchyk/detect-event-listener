@@ -5,7 +5,6 @@
   "author": "Maciej Krawczyk",
   "homepage": "https://github.com/mckravchyk/detect-event-listener",
   "license": "MIT",
-  "private": true,
   "main": "./dist/detect-event-listener.common.js",
   "module": "./dist/detect-event-listener.esm.js",
   "exports": {
