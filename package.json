@@ -21,12 +21,15 @@
     "dist/"
   ],
   "keywords": [
+    "events",
+    "passive",
     "addEventListener",
+    "event-listener",
+    "event-listener-options",
+    "passive-events",
     "browser",
     "detect",
-    "feature detection",
-    "front-end",
-    "passive events"
+    "feature detection"
   ],
   "devDependencies": {
     "@babel/core": "^7.18.9",
