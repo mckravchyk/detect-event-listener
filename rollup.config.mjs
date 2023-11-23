@@ -34,7 +34,7 @@ export default [
   {
     ...defaults,
     output: {
-      file: pkg.main,
+      file: pkg.exports['.'].require.default,
       format: 'cjs',
       banner,
     },
@@ -47,7 +47,7 @@ export default [
   {
     ...defaults,
     output: {
-      file: pkg.exports['.'],
+      file: pkg.exports['.'].import.default,
       format: 'es',
       banner,
     },
