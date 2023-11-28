@@ -14,7 +14,7 @@
         "default": "./dist/detect-event-listener.esm.js"
       },
       "require": {
-        "types": "./dist/index.d.mts",
+        "types": "./dist/index.d.ts",
         "default": "./dist/detect-event-listener.common.js"
       }
     }
